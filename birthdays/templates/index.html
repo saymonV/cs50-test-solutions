@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="/static/styles.css" rel="stylesheet">
+        <title>Birthdays</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Birthdays</h1>
+        </div>
+        <div class="section">
+            <div class="form">
+                <h2>Add a Birthday</h2>
+                <!-- TODO: Create a form for users to submit a name, a month, and a day -->
+                <form action="/" method="POST">
+                    <!-- Simple form for getting data from a user -->
+                    <input autocomplete="off" autofocus name="name" placeholder="Name" required type="text">
+
+                    <input autocomplete="off" name="month" placeholder="Month" required type="number" min="1" max="12" maxlength="2">
+
+                    <input autocomplete="off" name="day" placeholder="Day" required type="number" min="1" max="31" maxlength="2">
+
+                    <button type="submit" class="my-btn">Add</button>
+                </form>
+            </div>
+            <div class="section">
+                <h2>All Birthdays</h2>
+                <!-- Table listing out complete database -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Birthday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- TODO: Loop through the database entries to display them in this table -->
+
+                        <!-- Looping through list of birthdays and displaying them row by row -->
+                        {% for row in birthdays %}
+                            <tr>
+                                <td>{{ row.name }}</td>
+                                <td>{{ row.month }}/{{ row.day }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="section">
+                <h3>Remove</h3>
+                <!-- Form for removing birthdays from a list and database -->
+                <form action="/remove" method="POST">
+                    <input autocomplete="off" name="remove_name" placeholder="Name" required type="text">
+                    <button class="my-btn-del" type="submit">X</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+  {{ placeholder }}
+
+{% endblock %}
+
+
+<form action="/" method="post">
+    <input type="text" name="page">
+    <button type="submit ">
+        Submit
+    </button>
+
+</form>
+
+
+<table>
+  <thead>
+      <tr>
+        <th>
+          Search History
+        </th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for row in history %}
+          <tr>
+              <td>{{ row["page"] }}</td>
+          </tr>
+      {% endfor %}
+  </tbody>
+</table>
+

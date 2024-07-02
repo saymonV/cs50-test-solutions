@@ -1,0 +1,74 @@
+SELECT * FROM students;
+
+
+## WHERE i = case sensitive
+SELECT student_names FROM students WHERE house = "Slytherin";
+
+
+## Wild card character % u ovom slucaju trazi neku rec pre Potter da je Potter% onda posle
+
+
+SELECT student_names, house
+...>FROM students
+...>WHERE student_name LIKE "%Potter";
+
+
+##Ovde trazi imena koja pocinju sa H LIKE nije case sensitive
+
+SELECT student_names, house FROM students WHERE student_name LIKE "H%";
+
+## bez icega posle ORDER BY ide acending order
+## ako zelis obrnuto dodaje se  DESC posle
+SELECT * FROM students ORDER BY student_name DESC;
+
+SELECT COUNT(*) FROM students WHERE house = "Griffindor";
+
+SELECT house, COUNT(*) FROM students GROUP BY house;
+
+CREATE TABLE houses (
+    id INTERGER NOT NULL,
+    house TEXT NOT NULL,
+    head TEXT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE assignments (
+        students_id INTEGER,
+        house_id INTEGER,
+        FOREIGN KEY(student_id) REFERENCES student(id),
+        FOREIGN KEY(house_id) REFERENCES house(id),
+        PRIMARY KEY (student_id, house_id)
+);
+
+INSERT INTO houses (house, head)
+    VALUES ("Gryffindor", "McGonagall");
+
+
+SELECT id  FROM houses WHERE house = "Gryffindor";
+## Trazi id ako ga ne znas u napred
+## Nested query
+SELECT COUNT(student_id) FROM assignments WHERE house_id = (
+  SELECT id
+  FROM houses
+  WHERE house = "Gryffindor"
+);
+
+SELECT * FROM assignments JOIN houses ON assignments.house_id = houses.id
+WHERE houses.house = "Gryffindor";
+
+SELECT house, COUNT(student_id) FROM assignments
+JOIN houses ON houes.id = assignments.house_id
+GROUP BY house;
+
+SELECT rating, title
+     FROM ratings
+          JOIN movies
+            ON ratings.movie_id = movies.id
+     WHERE ratings.movie_id IN
+          (SELECT movie_id
+          FROM stars
+          WHERE person_id =
+               (SELECT id
+                  FROM people
+                  WHERE name = "Chadwick Boseman"))
+     ORDER BY rating;

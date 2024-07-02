@@ -1,0 +1,12 @@
+sort1 uses: Bubble Sort  O(n²) Ω(n)
+
+How do you know?: After testing sorted text files running time of sort1  compared to sort3 was significantly better.
+
+
+sort2 uses: Merge Sort O(n log n) Ω(n log n)
+
+How do you know?: During first tests I used big random text files where sort2 gave best results by far.
+
+sort3 uses: Selection Sort O(n²) Ω(n²)
+
+How do you know?: Performed slower on random numbers compared to sort2 and slower on sorted compared to sort1.

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            // DOMContentLoader is needed when JavaScript code is in the head of HTML file
+            document.addEventListener('DOMContentLoaded', function() {
+                // Select button with correct answer
+                let correct = document.querySelector('.btn-correct');
+                // On click we change style and text
+                correct.addEventListener('click', function() {
+                    correct.style.backgroundColor = 'green';
+                    correct.style.color = 'white';
+                    document.querySelector('#verdict1').innerHTML = 'Correct!'
+                });
+                // QuerySelectorAll returns array
+                let incorrect = document.querySelectorAll('.btn-incorrect');
+                // Using for loop to index into buttons
+                for (let i = 0;  i < incorrect.length; i++) {
+                    incorrect[i].addEventListener('click', function() {
+                        incorrect[i].style.backgroundColor = 'red';
+                        incorrect[i].style.color = 'white';
+                        document.querySelector('#verdict1').innerHTML = 'Incorrect!'
+                        });
+                }
+
+                // Select check button and listen for a click event
+                document.querySelector('.btn-check').addEventListener('click', function() {
+                    // Select user's input
+                    let input = document.querySelector('.input-1');
+                    // Checks if answer is correct
+                    if (input.value === 'Nikola' || input.value === 'nikola' || input.value === 'NIKOLA') {
+                    input.style.backgroundColor = 'green';
+                    document.querySelector('#verdict2').innerHTML = "Correct!";
+                    } else {
+                        // If not returns Incorrect feedback
+                        document.querySelector('#verdict2').innerHTML = "Incorrect!";
+                        input.style.backgroundColor = 'red';
+                    }
+                    });
+
+                    document.querySelector('.btn-check-2').addEventListener('click', function() {
+
+                    let input = document.querySelector('.input-2');
+
+                    if (input.value === 'Andromeda' || input.value === 'andromeda' || input.value === 'ANDROMEDA') {
+                    input.style.backgroundColor = 'green';
+                    document.querySelector('#verdict3').innerHTML = "Correct!";
+                    } else {
+                        document.querySelector('#verdict3').innerHTML = "Incorrect!";
+                        input.style.backgroundColor = 'red';
+                    }
+                    });
+             });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>
+                    Which year Marco Polo returned to Venice from his journeys in Asia ?
+                </h3>
+                <div>
+                    <!-- Buttons as possible answer choice -->
+                    <button class="btn btn-correct">1295</button>
+                    <button class="btn btn-incorrect">1275</button>
+                    <button class="btn btn-incorrect">1301</button>
+                    <button class="btn btn-incorrect">1379</button>
+                </div>
+                <p id="verdict1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <!-- It is also my name -->
+                <h3>What is the first name of a scientist whose last name is also a name of the famous electric car company?</h3>
+                <!-- Input field for users answer with a su-->
+                <input class="input-1" type="text" autofocus placeholder="Answer">
+                <button class="btn btn-check" type="submit">Check</button>
+                <p id="verdict2"></p>
+            </div>
+            <div class="section">
+                <h2>Bonus:</h2>
+                <hr>
+                <h3>What is the the name of the closest complete Galaxy to our home Milky Way Galaxy ?</h3>
+                <input class="input-2" type="text" autofocus placeholder="Answer">
+                <button class="btn btn-check-2" type="submit">Check</button>
+                <p id="verdict3"></p>
+            </div>
+        </div>
+    </body>
+</html>

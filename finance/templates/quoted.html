@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title%}
+    Quoted
+{% endblock %}
+
+{% block main %}
+<div class="container py-5 text-center">
+    {% for row in result %}
+    <p>A share of  {{row.name }} ({{row.symbol}}) costs {{ row.price | usd }} </p>
+    {% endfor %}
+</div>
+{% endblock %}
